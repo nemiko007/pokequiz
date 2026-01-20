@@ -1,0 +1,37 @@
+# /home/nemiko007/pokequiz/pokemon-quiz-frontend/netlify.toml
+
+# キャッシュ制御
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # 機密情報を含む可能性があるため、HTMLページのキャッシュを無効化
+    Cache-Control = "private, no-cache, no-store, must-revalidate"
+
+# 全てのページに適用するヘッダー
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # クリックジャッキング対策: 同一オリジンからのみフレーム内での表示を許可
+    X-Frame-Options = "SAMEORIGIN"
+    
+    # MIMEスニッフィング対策
+    X-Content-Type-Options = "nosniff"
+    
+    # リファラー情報の制御: 同一オリジンへのリクエストにのみリファラーを送信
+    Referrer-Policy = "same-origin"
+    
+    # ブラウザ機能のアクセス制御: オリジン内でカメラとマイクを許可、他は無効化
+    Permissions-Policy = "camera=(self), microphone=(self)"
+    
+    # コンテンツセキュリティポリシー (CSP)
+    # これは最も設定が複雑で、あなたのサイトの構成に合わせる必要があります。
+    # 以下は一般的な設定例です。
+    # 'self' は自分のドメインを指します。
+    # connect-src にはバックエンドAPIのドメインを追加してください。
+    # font-src や img-src など、外部リソースを使用している場合は、そのドメインも追加が必要です。
+    # Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://your-backend-api.example.com; font-src 'self'; object-src 'none'; frame-ancestors 'self';"
+    # より厳格なCSPの例。貴社の環境に合わせて調整してください。
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: raw.githubusercontent.com; connect-src 'self' https://pokemon-quiz-backend-u2zz.onrender.com; font-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+    
+    # サーバー情報を隠蔽したい場合 (オプション)
+    # Server = ""

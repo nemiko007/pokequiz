@@ -1,0 +1,427 @@
+ :root {
+  --primary-color: #ef5350; /* ポケモン図鑑の赤 */
+  --secondary-color: #43a047; /* 緑 */
+  --accent-color: #1976d2; /* 青 */
+  --warning-color: #ff9800; /* オレンジ */
+  --danger-color: #d32f2f;
+  --danger-background: #ffcdd2;
+  --text-color: #333;
+  --background-color: #f0f2f5;
+  --white: #fff;
+  --light-gray: #f5f5f5;
+  --border-color: #ddd;
+ }
+
+ .loading-fullscreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  background-color: var(--background-color);
+ }
+ 
+ .App {
+   text-align: center;
+ }
+ 
+ .App-header {
+   background-color: var(--primary-color);
+   padding: 20px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   color: white;
+   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+ }
+ 
+ .App-header h1 {
+   margin: 0;
+   font-size: 2.5rem;
+   text-align: left;
+}
+
+.header-user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-user-info span {
+  font-weight: bold;
+}
+
+.header-user-info button {
+  background: var(--white);
+  color: var(--primary-color);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+ }
+ 
+ .quiz-container {
+   max-width: 960px;
+   margin: 40px auto;
+   padding: 30px;
+   background-color: var(--white);
+   border-radius: 12px;
+   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+ }
+ 
+ .error-message {
+   color: var(--danger-color);
+   background-color: var(--danger-background);
+   padding: 10px;
+   border-radius: 4px;
+ }
+ 
+ .chart-wrapper {
+  margin-bottom: 30px;
+ }
+
+ .chart-container {
+   position: relative;
+   height: 300px;
+   width: 100%;
+ }
+
+ .total-stats {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-color);
+ }
+ 
+ .hint-area {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: var(--light-gray);
+  border-radius: 8px;
+ }
+ 
+ .options-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 15px;
+ }
+ 
+ .option-button {
+   padding: 12px;
+   font-size: 1rem;
+   font-weight: bold;
+   color: var(--text-color);
+   background-color: var(--white);
+   border: 2px solid var(--border-color);
+   border-radius: 6px;
+   cursor: pointer;
+   transition: background-color 0.2s, border-color 0.2s;
+ }
+ 
+ .option-button:hover {
+   background-color: var(--light-gray);
+   border-color: var(--accent-color);
+ }
+
+.all-pokemon-button {
+  /* 2カラム分の幅を取る */
+  grid-column: 1 / -1;
+}
+ 
+ .result-area {
+   margin-top: 20px;
+ }
+ 
+ .result-correct {
+   color: var(--secondary-color);
+   font-size: 1.5rem;
+   font-weight: bold;
+ }
+ 
+ .result-incorrect {
+   color: var(--danger-color);
+   font-size: 1.2rem;
+ }
+ 
+ .result-area h3 {
+   margin: 10px 0;
+   font-size: 2rem;
+ }
+ 
+ .pokemon-image {
+   width: 200px;
+   height: 200px;
+   margin: 10px 0;
+   animation: fadeIn 0.5s ease-in-out;
+ }
+ 
+ .next-button {
+   width: 100%;
+   padding: 12px 20px;
+   font-size: 1rem;
+   font-weight: bold;
+   color: var(--white);
+   background-color: var(--secondary-color);
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   transition: background-color 0.2s;
+   margin-top: 20px;
+ }
+ 
+ .next-button:hover {
+   background-color: #388e3c;
+ }
+ 
+ .modal-backdrop {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.6);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ .modal-content {
+   background-color: var(--white);
+   padding: 30px 40px;
+   border-radius: 12px;
+   text-align: center;
+   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+ }
+ 
+ .modal-content h2 {
+   margin-top: 0;
+ }
+ 
+ .modal-content p {
+   font-size: 1.2rem;
+ }
+ 
+ .region-selector h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #444;
+  font-size: 1.5rem;
+}
+
+.difficulty-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.difficulty-button {
+  padding: 10px 20px;
+  border: 2px solid var(--border-color);
+  background-color: var(--white);
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.difficulty-button.selected {
+  background-color: var(--accent-color);
+  color: var(--white);
+  border-color: var(--accent-color);
+}
+
+/* --- Auth Form Styles --- */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-form h2 {
+  margin-top: 0;
+}
+
+.auth-form input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.auth-form button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.auth-form p {
+  margin-top: 10px;
+}
+
+.user-stats-box {
+  background-color: var(--light-gray);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.user-stats-box h3 {
+  margin-top: 0;
+}
+
+.retry-button {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: var(--warning-color);
+  border-color: var(--warning-color);
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.question-counter {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.interrupt-button {
+  background: #757575; /* ニュートラルなグレー */
+  color: var(--white);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+ @keyframes fadeIn {
+   from {
+     opacity: 0;
+     transform: scale(0.9);
+   }
+   to {
+     opacity: 1;
+     transform: scale(1);
+   }
+ }
+
+/* --- レスポンシブデザイン (スマートフォン向け) --- */
+@media (max-width: 768px) {
+  .quiz-container {
+    max-width: 100%;
+    margin: 20px 10px;
+    padding: 20px;
+  }
+
+  .App-header {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .App-header h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  .header-user-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header-user-info {
+    position: static;
+    transform: none;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .option-button {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .chart-container {
+    height: 300px; /* グラフの高さを調整 */
+  }
+
+}
+
+
+.regional-charts-grid {
+  display: grid;
+  /* スマートフォン向け: 3列表示 */
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* タブレットサイズ */
+@media (min-width: 768px) {
+  .regional-charts-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+}
+
+/* PCサイズ */
+@media (min-width: 1024px) {
+  .regional-charts-grid {    
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+}
+
+.toggle-stats-button {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--accent-color);
+  padding: 6px 12px;
+  margin-top: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-stats-button:hover {
+  background-color: #e3f2fd; /* 青系の薄い色 */
+}
+
+.regional-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* グラフが過度に大きくならないように最大幅を設定 */
+  max-width: 130px;
+  /* グリッドセル内で中央揃えにする */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chart-container-doughnut {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 1rem;
+}
